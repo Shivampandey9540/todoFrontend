@@ -12,12 +12,12 @@ import SpecTodo from "./component/SpecTodo";
 import Context from "./Context/Context";
 import { reducer } from "./Context/reduser";
 function App() {
-  const { REACT_APP_URL } = process.env;
+  const URL = process.env.REACT_APP_URL;
   const arr = [];
   const [state, dispatch] = useReducer(reducer, arr);
   const Fetch = async () => {
     const data = await axios
-      .get(`${REACT_APP_URL}GetTodos`)
+      .get(`${URL}GetTodos`)
       .then((res) => {
         if (!res.data.Success === true) {
           console.log(res.data.Message);

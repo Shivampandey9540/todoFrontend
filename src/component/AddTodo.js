@@ -9,11 +9,11 @@ function AddTodo({ Fetch }) {
   const [Title, setTitle] = useState("");
   const [Tasks_holder, setTask_holder] = useState("");
   const [Fav, setFav] = useState(false);
-  const { REACT_APP_URL } = process.env;
+  const URL = process.env.REACT_APP_URL;
 
   const backendrequest = async (task) => {
     try {
-      const data = await axios.post(`${REACT_APP_URL}Creates`, {
+      const data = await axios.post(`${URL}Creates`, {
         Title: Title,
         Tasks: task,
         isimportant: Fav,

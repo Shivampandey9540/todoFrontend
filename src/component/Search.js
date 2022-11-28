@@ -21,8 +21,8 @@ function Search({ Fetch }) {
   }
   const CheckMarkImportant = async (id) => {
     try {
-      const data = await axios.put(`${URL}CheckMark/${id}`, {
-        Headers: "Access-Control-Allow-Methods",
+      const data = await axios.put(`${URL}MarkImportant/${id}`, {
+        headers: "Access-Control-Allow-Methods",
       });
       console.log(data);
     } catch (error) {
