@@ -57,14 +57,6 @@ function App() {
               />
             </Route>
           </Routes>
-
-          <button
-            onClick={() => {
-              console.log(state);
-            }}
-          >
-            click me
-          </button>
         </Context.Provider>
       </Router>
     </div>
