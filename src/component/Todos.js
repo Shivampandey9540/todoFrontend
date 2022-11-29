@@ -13,28 +13,14 @@ const Todos = () => {
   const [Search, setSearch] = useState("");
 
   useEffect(() => {}, [state]);
-  const { REACT_APP_URL } = process.env;
+
   const SearchtheString = async () => {
+    console.log("heelo");
     Search.trim();
-    try {
-      const data = await axios
-        .get(`${REACT_APP_URL}Search/${Search}`)
-        .then((response) => {
-          return response.data;
-        })
-        .catch((err) => {
-          console.log(err);
-          throw err.response.data;
-        });
-      console.log(data.data);
-      const Arr = data.data;
-      navigate(`/Search/${Search}`, { state: { Arr } });
-    } catch (error) {
-      if (error.Success === false) {
-        toast.error(error.Message);
-      }
-      console.log(error);
-    }
+
+    navigate(`/Search/${Search}`, {
+      state: { Search },
+    });
   };
   const HandleSearch = (e) => {
     e.preventDefault();

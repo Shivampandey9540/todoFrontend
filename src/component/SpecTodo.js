@@ -1,12 +1,27 @@
 import { useParams } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 import Context from "../Context/Context";
 import { BsFillPencilFill } from "react-icons/bs";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useContext, useState, useEffect } from "react";
 const SpecTodo = () => {
+  const URL = process.env.REACT_APP_URL;
   const [SpecTodo, setSpecTodo] = useState([]);
   const { state } = useContext(Context);
   const { id } = useParams();
+
+  const CheckMarkImportant = async (id) => {
+    try {
+      const data = await axios.put(`${URL}MarkImportant/${id}`);
+      console.log(data.data);
+    } catch (error) {
+      console.log(error.response.data);
+      toast.error(error.response.data.Message);
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     setSpecTodo(
       state.filter((e) => {
@@ -55,13 +70,23 @@ const SpecTodo = () => {
                           {" "}
                           <BsFillPencilFill />
                         </span>
-                        <span>
-                          {e.isimportant === true ? (
-                            <AiFillStar />
-                          ) : (
-                            <AiOutlineStar />
-                          )}
-                        </span>
+                        <div
+                          onClick={() => {
+                            let newArry = [...SpecTodo];
+                            newArry[0].isimportant = !newArry[0].isimportant;
+                            setSpecTodo([...newArry]);
+                            CheckMarkImportant(e._id);
+                          }}
+                        >
+                          {" "}
+                          <span>
+                            {e.isimportant === true ? (
+                              <AiFillStar />
+                            ) : (
+                              <AiOutlineStar />
+                            )}
+                          </span>{" "}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -71,6 +96,7 @@ const SpecTodo = () => {
           })}{" "}
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };
