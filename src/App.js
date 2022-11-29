@@ -20,7 +20,7 @@ function App() {
       .get(`${URL}GetTodos`, {
         headers: {
           "Access-Control-Allow-Origin":
-            "https://todoappshivampandey.herokuapp.com",
+            "https://todofrontend-txbl.vercel.app/",
         },
       })
       .then((res) => {
