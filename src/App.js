@@ -17,7 +17,12 @@ function App() {
   const [state, dispatch] = useReducer(reducer, arr);
   const Fetch = async () => {
     const data = await axios
-      .get(`${URL}GetTodos`)
+      .get(`${URL}GetTodos`, {
+        headers: {
+          "Access-Control-Allow-Origin":
+            "https://todoappshivampandey.herokuapp.com",
+        },
+      })
       .then((res) => {
         if (!res.data.Success === true) {
           console.log(res.data.Message);
