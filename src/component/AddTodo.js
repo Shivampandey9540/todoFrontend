@@ -42,7 +42,9 @@ function AddTodo({ Fetch }) {
       );
     }
     Tasks_holder.trim();
+    console.log(Tasks_holder);
     const Arr = Tasks_holder.split(",");
+    console.log(Arr);
     const tasks = [];
     for (let i = 0; i < Arr.length; i++) {
       tasks.push({ task: Arr[i] });

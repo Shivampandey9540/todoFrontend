@@ -15,12 +15,12 @@ const Todos = () => {
   useEffect(() => {}, [state]);
 
   const SearchtheString = async () => {
-    console.log("heelo");
     Search.trim();
 
     navigate(`/Search/${Search}`, {
       state: { Search },
     });
+    setSearch("");
   };
   const HandleSearch = (e) => {
     e.preventDefault();
@@ -57,6 +57,7 @@ const Todos = () => {
                 type="search"
                 name="Search"
                 placeholder="Search..."
+                value={Search}
                 onChange={(e) => {
                   e.preventDefault();
                   setSearch(e.currentTarget.value);

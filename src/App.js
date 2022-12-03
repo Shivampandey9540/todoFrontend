@@ -9,6 +9,8 @@ import Home from "./Home";
 import Search from "./component/Search";
 
 import SpecTodo from "./component/SpecTodo";
+
+import EditTodo from "./component/Edited";
 import Context from "./Context/Context";
 import { reducer } from "./Context/reduser";
 function App() {
@@ -33,7 +35,7 @@ function App() {
         console.log(error);
         return error;
       });
-
+    console.log(data);
     if (data.message === "Network Error") {
       console.log(data);
       return null;
@@ -55,11 +57,12 @@ function App() {
         <Context.Provider value={{ state, dispatch }}>
           <Routes>
             <Route path="/" element={<Home Fetch={Fetch} />}>
-              <Route path="/Todo/:id" element={<SpecTodo />} />
+              <Route path="/Todo/:id" element={<SpecTodo Fetch={Fetch} />} />
               <Route
                 path="/Search/:String"
                 element={<Search Fetch={Fetch} />}
-              />
+              ></Route>
+              <Route path="Edited" element={<EditTodo Fetch={Fetch} />} />
             </Route>
           </Routes>
         </Context.Provider>
