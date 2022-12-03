@@ -20,7 +20,7 @@ function App() {
   const Fetch = async () => {
     const data = await axios
       .get(`${URL}GetTodos`, {
-        headers: {
+        header: {
           "Access-Control-Allow-Origin":
             "https://todofrontend-txbl.vercel.app/",
         },
